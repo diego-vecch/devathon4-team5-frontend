@@ -4,7 +4,8 @@ export default function Login () {
     <div className='fixed flex w-full items-center'>
       <div className='relative mx-6 md:mx-auto w-full  bg-light-bg2 rounded-lg md:w-1/2 lg:w-1/3 z-20 m-8'>
         <div className='shadow-lg bg-white rounded-lg p-8'>
-          <h1 className='text-2xl text-green-400'>Sign in to your account</h1>
+          <h1 className='text-2xl text-green-400'>Sign in to your account </h1>
+          {/* Login */}
           <form className='pt-6 pb-2 my-2'>
             <div className='mb-4'>
               <label className='block text-sm font-bold mb-2' for='email'>
