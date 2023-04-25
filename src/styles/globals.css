@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* fondo agregado al body */
 body{
     background-color: #EFEBFF;
 }
