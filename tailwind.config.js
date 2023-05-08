@@ -22,7 +22,8 @@ module.exports = {
         form: '#9980FF',
         selec: '#2F20D3',
         btn: '#260162',
-        rose: '#E10A4B'
+        rose: '#E10A4B',
+        green: '#1DAD69'
       }
     }
   },
