@@ -29,7 +29,7 @@ function Navbar ({ direct }) {
         <li>
           {isLogged
             ? <Link href='#' onClick={handleClick}>Logout</Link>
-            : <Link href='/Login'>Login</Link>}
+            : <Link href='/login'>Login</Link>}
         </li>
       </ul>
     </nav>
