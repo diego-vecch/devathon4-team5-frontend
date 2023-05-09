@@ -1,6 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import useUser from '@/hooks/useUser'
 import Router from 'next/router'
+import Link from 'next/link'
 
 export default function Login () {
   const [credentials, setCredentials] = useState({
@@ -54,7 +55,7 @@ export default function Login () {
                 <button type='submit' className='bg-light-btn  text-light-bg1 rounded-lg m-2 h-7 w-36 content-center'>Sign In</button>
               </div>
               <label className='ml-2 text-sm font-bold text-gray-900 dark:text-gray-300'>Not registered?</label>
-              <label className='ml-2 gap-4 text-sm font-bold text-light-selec dark:text-gray-300'>Create acount.</label>
+              <Link href='/register' className='ml-2 gap-4 text-sm font-bold text-light-selec dark:text-gray-300'>Create acount.</Link>
             </form>}
           {
             hasLoginError && <strong className='text-light-rose'>Invalid data</strong>
