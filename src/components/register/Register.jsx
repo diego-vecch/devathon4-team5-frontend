@@ -2,9 +2,8 @@ import { useState, useCallback } from 'react'
 
 export default function Register () {
   const [datos, setDatos] = useState({
-    email: '',
-    name: '',
     username: '',
+    email: '',
     password: ''
   })
 
@@ -36,29 +35,21 @@ export default function Register () {
           <h1 className='text-2xl text-green-400'>Create an account </h1>
           {/* Register */}
           <form className='pt-6 pb-2 my-2' method='post' onSubmit={enviarDatos}>
-            <div className='grid grid-cols-2 gap-4'>
-              <div className='mb-4'>
-                <label className='block text-sm font-bold mb-2' htmlFor='name'>
-                  Name
-                </label>
-                <input className='rounded w-48 py-2 px-3 text-grey-darker' onChange={handleChange} id='name' name='name' type='text' placeholder='Name' />
-              </div>
-              <div className='mb-4'>
-                <label className='block text-sm font-bold mb-2' htmlFor='username'>
-                  User Name
-                </label>
-                <input className='rounded w-48 py-2 px-3 text-grey-darker' onChange={handleChange} id='username' name='username' type='text' placeholder='User Name' />
-              </div>
+            <div className='mb-6'>
+              <label className='block text-sm font-bold mb-2' htmlFor='username'>
+                User Name
+              </label>
+              <input className='rounded w-full py-2 px-3 text-grey-darker mb-3' onChange={handleChange} id='username' name='username' type='text' placeholder='User Name' />
             </div>
             <div className='mb-6'>
               <label className='block text-sm font-bold mb-2' htmlFor='email'>
-                Your email
+                Email
               </label>
-              <input className='rounded w-full py-2 px-3 text-grey-darker mb-3' onChange={handleChange} id='email' type='email' name='email' placeholder='Email' />
+              <input className='rounded w-full py-2 px-3 text-grey-darker mb-3' onChange={handleChange} id='email' type='email' name='email' placeholder='email@email.com' />
             </div>
             <div className='mb-6'>
               <label className='block text-sm font-bold mb-2' htmlFor='password'>
-                Your password
+                Password
               </label>
               <input className='rounded w-full py-2 px-3 text-grey-darker mb-3' onChange={handleChange} id='password' type='password' name='password' placeholder='Password' />
             </div>
@@ -70,10 +61,13 @@ export default function Register () {
             </div>
             <div className='flex items-center'>
               <input type='checkbox' value='' className='w-4 h-4 bg-gray-100 border-gray-300 rounded' />
-              <label className='ml-2 text-sm font-bold dark:text-gray-300'>I accept the Terms and Conditions</label>
+              <label className='ml-2 text-sm font-bold dark:text-gray-300'>I accept the <font color="blue"><a href="https://www.example.com" target="_blank">Terms and Conditions.</a></font> </label>
             </div>
             <div className='flex flex-col m-6 items-center'>
               <button type='submit' onClick={enviarDatos} className='bg-light-btn text-light-bg1 rounded-lg m-2 h-7 w-auto content-center'>Create Account</button>
+            </div>
+            <div className='flex justify-center items-center'>
+              <label className='ml-2 text-sm font-bold dark:text-gray-300'>you have an account? <font color="blue"><a href="https://www.example.com" target="_blank">Login.</a></font> </label>
             </div>
           </form>
         </div>
