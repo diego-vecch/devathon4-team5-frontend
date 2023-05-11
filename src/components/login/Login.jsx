@@ -36,15 +36,15 @@ export default function Login () {
             <form onSubmit={handleSubmit} className='pt-6 pb-2 my-2'>
               <div className='mb-4'>
                 <label className='block text-sm font-bold mb-2' htmlFor='email'>
-                  Your Email
+                  Email
                 </label>
-                <input name='email' type='email' required onChange={handleChange} className='rounded w-full py-2 px-3 text-grey-darker' id='email' placeholder='123@...com' />
+                <input name='email' type='email' required onChange={handleChange} className='rounded w-full py-2 px-3 text-grey-darker focus:outline-none' id='email' placeholder='123@...com' />
               </div>
               <div className='mb-6'>
                 <label className='block text-sm font-bold mb-2' htmlFor='password'>
-                  Your password
+                  Password
                 </label>
-                <input name='password' type='password' required onChange={handleChange} className='rounded w-full py-2 px-3 text-grey-darker mb-3' id='password' placeholder='Password' />
+                <input name='password' type='password' required onChange={handleChange} className='rounded w-full py-2 px-3 text-grey-darker mb-1 focus:outline-none' id='password' placeholder='Password' />
               </div>
               <div className='flex items-center'>
                 <input type='checkbox' className='w-4 h-4 bg-gray-100 border-gray-300 rounded' />
@@ -55,7 +55,7 @@ export default function Login () {
                 <button type='submit' className='bg-light-btn  text-light-bg1 rounded-lg m-2 h-7 w-36 content-center'>Sign In</button>
               </div>
               <label className='ml-2 text-sm font-bold text-gray-900 dark:text-gray-300'>Not registered?</label>
-              <Link href='/register' className='ml-2 gap-4 text-sm font-bold text-light-selec dark:text-gray-300'>Create acount.</Link>
+              <Link href='/register' className='ml-1 gap-4 text-sm font-bold text-light-selec dark:text-gray-300'>Create an account.</Link>
             </form>}
           {
             hasLoginError && <strong className='text-light-rose'>Invalid data</strong>
