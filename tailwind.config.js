@@ -11,6 +11,21 @@ module.exports = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+      },
+      animation: {
+        'pulse-text': 'pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;'
+      },
+      keyframes: {
+        pulse: {
+          '0%, 100%': {
+            opacity: 1,
+            color: '#2C0074'
+          },
+          '50%': {
+            opacity: 0.70,
+            color: '#4503B1'
+          }
+        }
       }
     },
     colors: {
