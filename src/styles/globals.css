@@ -2,7 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+/* responsive, primer parametro */
+html {
+    font-size: 16px;
+}
+
+
 /* fondo agregado al body */
-body{
+body {
     background-color: #EFEBFF;
+    margin: 0;
+    height: 100vh;
+}
+
+
+#formulario {
+    height: 100vh;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+
+/* responsive, reglas */
+
+@media (min-width: 2500px) {
+    html {
+        font-size: 25px;
+    }
+}
+
+@media (min-width: 3500px) {
+    html {
+        font-size: 32px;
+    }
 }
