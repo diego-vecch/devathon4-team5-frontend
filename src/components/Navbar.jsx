@@ -28,8 +28,8 @@ function Navbar ({ direct }) {
         ))}
         <li>
           {isLogged
-            ? <Link href='#' onClick={handleClick}>Logout</Link>
-            : <Link href='/login'>Login</Link>}
+            ? <Link className='hover:text-light-selec' href='#' onClick={handleClick}>Logout</Link>
+            : <Link className='hover:text-light-selec' href='/login'>Login</Link>}
         </li>
       </ul>
     </nav>
