@@ -1,56 +1,33 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import fetchSearchPlace from '@/services/fetchSerchPlace'
-
-/* const input = typeof document !== 'undefined' && document.getElementById('text')
-typeof addEventListener !== 'undefined' && input.addEventListener('keyup', (e) => {
-  if (e.keyCode === 13) {
-    console.log('hey')
-    searchPlace()
-  }
-}
-)
-
-function searchPlace ({ searchText, setListPlace }) {
-  // Search
-  const params = {
-    q: searchText,
-    format: 'json',
-    addressdetails: 1,
-    polygon_geojson: 0
-  }
-  const queryString = new URLSearchParams(params).toString()
-  const requestOptions = {
-    method: 'GET',
-    redirect: 'follow'
-  }
-  fetchSearchPlace({ NOMINATIM_BASE_URL, queryString, requestOptions, setListPlace })
-} */
+import IconSearch from './componetImage/IconSearch'
 
 export default function SearchBox (props) {
   const { /* selectPosition, */ setSelectPosition } = props
   const [searchText, setSearchText] = useState('')
   const [listPlace, setListPlace] = useState([])
+  const [optionPlace, setOptionPlace] = useState(false)
+
+  const searchPlace = () => {
+    const params = {
+      q: searchText,
+      format: 'json',
+      addressdetails: 1,
+      polygon_geojson: 0
+    }
+    const queryString = new URLSearchParams(params).toString()
+    fetchSearchPlace({ queryString, setListPlace })
+  }
 
   return (
     <>
       <div className='flex'>
         <div>
           <button
-            className='bg-light-btn text-light-bg1 rounded-sm h-6 w-16'
-            onClick={() => {
-            // Search
-              const params = {
-                q: searchText,
-                format: 'json',
-                addressdetails: 1,
-                polygon_geojson: 0
-              }
-              const queryString = new URLSearchParams(params).toString()
-              fetchSearchPlace({ queryString, setListPlace })
-            }}
-          >
-            Search
+            className='bg-light-btn rounded-sm h-8 w-8 p-1 '
+            onClick={searchPlace}
+          ><IconSearch />
           </button>
         </div>
         <div style={{ flex: 1 }}>
@@ -60,8 +37,10 @@ export default function SearchBox (props) {
             value={searchText}
             onChange={(event) => {
               setSearchText(event.target.value)
+              searchPlace(event.target.value)
+              setOptionPlace(false)
             }}
-            className='w-64 px-1 focus:outline-none bg-light-lth'
+            className='w-64 px-1 py-1 focus:outline-none bg-light-lth'
             placeholder='Buenos Aires...'
           />
         </div>
@@ -69,35 +48,41 @@ export default function SearchBox (props) {
 
       <div>
         <div className='pt-1 w-96' component='nav' aria-label='main mailbox folders'>
-          {listPlace.map((item) => {
+          {!optionPlace && listPlace.map((item) => {
             return (
               <div key={item?.place_id}>
-                <button
+                <div
                   onClick={() => {
                     setSelectPosition(item)
+                    setOptionPlace(true)
+                    console.log(optionPlace)
+                    setSearchText(`${item?.display_name.trim().slice(0, 24) + ' ...'}`)
                   }}
                 >
-                  <div className='flex'>
+                  <div className='flex py-2'>
                     <div>
                       <Image
                         src='/placeholder.png'
                         alt='Placeholder'
-                        style={{ width: 20, height: 20 }}
+                        style={{ width: 16, height: 17 }}
                         width={38}
                         height={38}
                       />
                     </div>
-                    <div className=' w-[98%] text-sm' primary={item?.display_name}>{item?.display_name}</div>
-
+                    <button className=' w-[98%] text-sm text-left pl-1' primary={item?.display_name}>
+                      {item?.display_name.trim().length > 34
+                        ? item?.display_name.trim().slice(0, 36) + ' ...'
+                        : item?.display_name.trim().slice(0, 40)}
+                    </button>
                   </div>
-                </button>
-
+                </div>
                 <div />
               </div>
             )
           })}
         </div>
       </div>
+
     </>
   )
 }
