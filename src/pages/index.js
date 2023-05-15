@@ -10,7 +10,7 @@ export default function Home () {
     <main className='h-screen bg-gradient-to-t to-light-bg1 from-light-bg2 '>
       <Navbar />
       <div className='grid place-items-center'>
-        <h2 className='pt-5 text-lg animate-pulse-text'>Check the accessibility of the places of your interest</h2>
+        <h2 className='pt-5 text-xl animate-pulse-text'>Check the accessibility of places of interest</h2>
         <section className='bg-light-form bg-opacity-25 h-[96%] w-[96%] mt-5 md:max-h-screen'>
           <section className='grid grid-cols-3'>
             <div className='p-4'>
