@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import Image from 'next/image'
 import fetchSearchPlace from '@/services/fetchSerchPlace'
 import IconSearch from './componetImage/IconSearch'
+import SearchText from '../context/searchTextContext'
 
-export default function SearchBox (props) {
-  const { /* selectPosition, */ setSelectPosition } = props
-  const [searchText, setSearchText] = useState('')
+export default function SearchBox ({ setSelectPosition }) {
+  // const [searchText, setSearchText] = useState('')
+  const { searchText, setSearchText } = useContext(SearchText)
   const [listPlace, setListPlace] = useState([])
   const [optionPlace, setOptionPlace] = useState(false)
 
@@ -53,9 +54,10 @@ export default function SearchBox (props) {
               <div key={item?.place_id}>
                 <div
                   onClick={() => {
+                    // el item es lo mismo que devuelve el fetchSearchPlace
                     setSelectPosition(item)
                     setOptionPlace(true)
-                    console.log(optionPlace)
+                    console.log('item que usa setSelectPo', item, 'hasta acá', optionPlace)
                     setSearchText(`${item?.display_name.trim().slice(0, 24) + ' ...'}`)
                   }}
                 >

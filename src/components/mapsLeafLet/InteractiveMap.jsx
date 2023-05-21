@@ -1,50 +1,42 @@
-import { useEffect } from 'react'
-import { MapContainer, TileLayer, useMap, Marker, Popup } from 'react-leaflet'
+import { useContext } from 'react'
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
+import PositionContext from '../../context/userPositionContext'
+import { ResetCenterView } from './ResetCenterView'
 
 const icon = L.icon({
   iconUrl: './placeholder.png',
   iconSize: [38, 38]
 })
 
-const position = [51.505, -0.09]
+function InteractiveMap ({ selectPosition }) {
+  const { userPosition } = useContext(PositionContext)
+  console.log(
+    'my pos:',
+    'lat', userPosition[0],
+    'lon', userPosition[1])
 
-function ResetCenterView (props) {
-  const { selectPosition } = props
-  const map = useMap()
-  useEffect(() => {
-    if (selectPosition) {
-      map.setView(
-        L.latLng(selectPosition?.lat, selectPosition?.lon),
-        map.getZoom(),
-        {
-          animate: true
-        }
-      )
-    }
-  }, [selectPosition, map])
+  const myLatitude = selectPosition?.lat || userPosition[0]
+  const myLongitude = selectPosition?.lon || userPosition[1]
+  const locationSelection = [myLatitude, myLongitude]
 
-  return null
-}
-
-function InteractiveMap (props) {
-  const { selectPosition } = props
-  const locationSelection = [selectPosition?.lat, selectPosition?.lon]
   return (
     <MapContainer
       className='h-[30rem] w-[98]'
-      center={position} zoom={13}
+      center={locationSelection} zoom={13}
       scrollWheelZoom
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url='https://tile.openstreetmap.org/{z}/{x}/{y}.png'
       />
-      {selectPosition && (
+      {locationSelection && (
         <Marker position={locationSelection} icon={icon}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            A pretty CSS3 popup.
+            <br />
+            Easily customizable.
           </Popup>
         </Marker>
       )}
