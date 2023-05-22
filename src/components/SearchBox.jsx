@@ -5,20 +5,12 @@ import IconSearch from './componetImage/IconSearch'
 import SearchText from '../context/searchTextContext'
 
 export default function SearchBox ({ setSelectPosition }) {
-  // const [searchText, setSearchText] = useState('')
   const { searchText, setSearchText } = useContext(SearchText)
   const [listPlace, setListPlace] = useState([])
   const [optionPlace, setOptionPlace] = useState(false)
 
   const searchPlace = () => {
-    const params = {
-      q: searchText,
-      format: 'json',
-      addressdetails: 1,
-      polygon_geojson: 0
-    }
-    const queryString = new URLSearchParams(params).toString()
-    fetchSearchPlace({ queryString, setListPlace })
+    fetchSearchPlace({ searchText, setListPlace })
   }
 
   return (
@@ -40,6 +32,9 @@ export default function SearchBox ({ setSelectPosition }) {
               setSearchText(event.target.value)
               searchPlace(event.target.value)
               setOptionPlace(false)
+              if (event.target.value === '') {
+                setOptionPlace(true)
+              }
             }}
             className='w-64 px-1 py-1 focus:outline-none bg-light-lth'
             placeholder='Buenos Aires...'
@@ -50,15 +45,17 @@ export default function SearchBox ({ setSelectPosition }) {
       <div>
         <div className='pt-1 w-96' component='nav' aria-label='main mailbox folders'>
           {!optionPlace && listPlace.map((item) => {
+            const namePosition = item?.locality
+            const latitudinalPosition = item?.location.lat
+            const longitudinalPosition = item?.location.lng
+            const idPosition = item?.place_id
             return (
-              <div key={item?.place_id}>
+              <div key={idPosition}>
                 <div
                   onClick={() => {
-                    // el item es lo mismo que devuelve el fetchSearchPlace
-                    setSelectPosition(item)
+                    setSelectPosition({ lat: latitudinalPosition, lon: longitudinalPosition })
                     setOptionPlace(true)
-                    console.log('item que usa setSelectPo', item, 'hasta acá', optionPlace)
-                    setSearchText(`${item?.display_name.trim().slice(0, 24) + ' ...'}`)
+                    setSearchText(`${namePosition.trim()}`)
                   }}
                 >
                   <div className='flex py-2'>
@@ -71,10 +68,10 @@ export default function SearchBox ({ setSelectPosition }) {
                         height={38}
                       />
                     </div>
-                    <button className=' w-[98%] text-sm text-left pl-1' primary={item?.display_name}>
-                      {item?.display_name.trim().length > 34
-                        ? item?.display_name.trim().slice(0, 36) + ' ...'
-                        : item?.display_name.trim().slice(0, 40)}
+                    <button className=' w-[98%] text-sm text-left pl-1' primary={namePosition}>
+                      {namePosition.trim().length > 34
+                        ? namePosition.trim().slice(0, 36) + ' ...'
+                        : namePosition.trim().slice(0, 40)}
                     </button>
                   </div>
                 </div>
