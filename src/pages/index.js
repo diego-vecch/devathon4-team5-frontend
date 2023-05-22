@@ -3,6 +3,7 @@ import InteractiveMap from '@/components/mapsLeafLet/Index'
 import InfoCard from '@/components/InfoCard/InfoCard'
 import SearchBox from '@/components/SearchBox'
 import { useState } from 'react'
+import Valoration from '@/components/InfoCard/Valoration'
 
 export default function Home () {
   const [selectPosition, setSelectPosition] = useState(null)
@@ -18,6 +19,9 @@ export default function Home () {
                 <SearchBox selectPosition={selectPosition} setSelectPosition={setSelectPosition} />
               </div>
               <InfoCard />
+              <div>
+                <Valoration />
+              </div>
             </div>
             <div className='col-span-2 p-4'>
               <InteractiveMap selectPosition={selectPosition} />
