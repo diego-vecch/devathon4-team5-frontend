@@ -3,18 +3,13 @@ import PositionContext from '../context/userPositionContext'
 import SearchText from '../context/searchTextContext'
 
 export default function ButtonUserPosition ({ setSelectPosition }) {
-  const { userPosition, setUserPosition } = useContext(PositionContext)
+  const { setUserPosition } = useContext(PositionContext)
   const { setSearchText } = useContext(SearchText)
 
   const searchMyPositon = () => {
     navigator.geolocation.getCurrentPosition(
       function (position) {
-        console.log(
-          'latitude is',
-          position.coords.latitude,
-          'longitude is',
-          position.coords.longitude)
-        console.log(userPosition)
+        console.log('estás en tu ubicación')
         const newPosition = [position.coords.latitude, position.coords.longitude]
         setUserPosition(newPosition)
         setSelectPosition()

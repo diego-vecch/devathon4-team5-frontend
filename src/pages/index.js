@@ -17,7 +17,7 @@ export default function Home () {
           <section className='grid grid-cols-3'>
             <div className='p-4'>
               <div style={{ width: '16vw' }}>
-                <SearchBox selectPosition={selectPosition} setSelectPosition={setSelectPosition} />
+                <SearchBox setSelectPosition={setSelectPosition} />
               </div><ButtonUserPosition setSelectPosition={setSelectPosition} />
               <InfoCard />
               <div>

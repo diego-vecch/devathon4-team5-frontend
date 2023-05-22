@@ -12,10 +12,6 @@ const icon = L.icon({
 
 function InteractiveMap ({ selectPosition }) {
   const { userPosition } = useContext(PositionContext)
-  console.log(
-    'my pos:',
-    'lat', userPosition[0],
-    'lon', userPosition[1])
 
   const myLatitude = selectPosition?.lat || userPosition[0]
   const myLongitude = selectPosition?.lon || userPosition[1]
@@ -40,7 +36,10 @@ function InteractiveMap ({ selectPosition }) {
           </Popup>
         </Marker>
       )}
-      <ResetCenterView selectPosition={selectPosition} />
+      <ResetCenterView
+        latitudinalPosition={selectPosition?.lat}
+        longitudinalPosition={selectPosition?.lon}
+      />
     </MapContainer>
   )
 }
