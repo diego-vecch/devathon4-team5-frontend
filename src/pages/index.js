@@ -4,6 +4,7 @@ import InfoCard from '@/components/InfoCard/InfoCard'
 import SearchBox from '@/components/SearchBox'
 import { useState } from 'react'
 import Valoration from '@/components/InfoCard/Valoration'
+import ButtonUserPosition from '@/components/ButtonUserPosition'
 
 export default function Home () {
   const [selectPosition, setSelectPosition] = useState(null)
@@ -17,7 +18,7 @@ export default function Home () {
             <div className='p-4'>
               <div style={{ width: '16vw' }}>
                 <SearchBox selectPosition={selectPosition} setSelectPosition={setSelectPosition} />
-              </div>
+              </div><ButtonUserPosition setSelectPosition={setSelectPosition} />
               <InfoCard />
               <div>
                 <Valoration />
