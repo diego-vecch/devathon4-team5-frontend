@@ -61,7 +61,7 @@ export default function Valoration () {
         </form>
       )}
       {formSubmitted && (
-        <p className='text-light-green mt-2 h-20 lg:h-10 border-r-light-green border-l-2 bg-light-softgreen bg-opacity-[58%] pl-2'>Thank you for evaluating your experience.</p>
+        <p className='text-light-green mt-2 h-20 lg:h-8 border-r-light-green border-l-2 bg-light-softgreen bg-opacity-90 pl-2'>Thank you for evaluating your experience.</p>
       )}
     </div>
   )

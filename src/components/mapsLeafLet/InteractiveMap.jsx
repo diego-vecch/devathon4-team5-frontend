@@ -19,7 +19,7 @@ function InteractiveMap ({ selectPosition }) {
 
   return (
     <MapContainer
-      className='h-[30rem] w-[98]'
+      className='h-[40rem] w-[98]'
       center={locationSelection} zoom={13}
       scrollWheelZoom
     >
