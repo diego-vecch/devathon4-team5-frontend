@@ -17,12 +17,12 @@ export default function Valoration () {
   }
 
   return (
-    <div>
+    <div className='pt-4'>
       {!formSubmitted && (
-        <div className='text-center'>
+        <div className='text-center bg-light-btn w-36 text-light-lth'>
           <button
             className='bg-blue-500 text-white rounded-sm h-8 px-4'
-            onClick={() => setFormVisible(true)}
+            onClick={() => setFormVisible(!formVisible)}
           >
             Start Rating
           </button>
@@ -30,7 +30,7 @@ export default function Valoration () {
       )}
 
       {formVisible && !formSubmitted && (
-        <form className='w-64 px-1 py-1 focus:outline-none bg-light-lth' onSubmit={handleSubmit}>
+        <form className='w-64 px-1 py-1 focus:outline-none bg-light-bg2' onSubmit={handleSubmit}>
           <h3>Value your experience</h3>
           <div className='rating'>
             {[1, 2, 3, 4, 5].map((value) => (
@@ -48,21 +48,20 @@ export default function Valoration () {
             ))}
           </div>
 
-          <textarea name='comments' cols='30' rows='10' placeholder='Write your comment' />
+          <textarea className='bg-light-lth w-60 focus:outline-none px-1' name='comments' placeholder='Write your comment' />
 
           <input
             type='submit'
             value={formSubmitted ? 'Thank you!' : 'Send'}
-            className={`bg-blue-500 text-white rounded-sm h-8 w-24 p-1 ${
-              formSubmitted ? 'bg-green-500 cursor-not-allowed' : ''
+            className={`bg-light-btn text-light-lth rounded-sm h-8 w-24 p-1 ${
+              formSubmitted ? 'text-light-lth cursor-not-allowed' : ''
             }`}
             disabled={formSubmitted}
           />
-
-          {formSubmitted && (
-            <p className='text-green-500 mt-2'>Thank you for evaluating your experience.</p>
-          )}
         </form>
+      )}
+      {formSubmitted && (
+        <p className='text-light-green mt-2 h-20 lg:h-10 border-r-light-green border-l-2 bg-light-softgreen bg-opacity-[58%] pl-2'>Thank you for evaluating your experience.</p>
       )}
     </div>
   )
