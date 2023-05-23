@@ -36,7 +36,7 @@ export default function SearchBox ({ setSelectPosition }) {
                 setOptionPlace(true)
               }
             }}
-            className='w-64 px-1 py-1 focus:outline-none bg-light-lth'
+            className='w-96 px-1 py-1 focus:outline-none bg-light-lth'
             placeholder='Buenos Aires...'
           />
         </div>
@@ -53,7 +53,7 @@ export default function SearchBox ({ setSelectPosition }) {
               <div key={idPosition}>
                 <div
                   onClick={() => {
-                    setSelectPosition({ lat: latitudinalPosition, lon: longitudinalPosition })
+                    setSelectPosition({ lat: latitudinalPosition, lon: longitudinalPosition, name: namePosition })
                     setOptionPlace(true)
                     setSearchText(`${namePosition.trim()}`)
                   }}

@@ -13,7 +13,7 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
       },
       animation: {
-        'pulse-text': 'pulse 7s cubic-bezier(0.4, 0, 0.6, 1) infinite;'
+        'pulse-text': 'pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;'
       },
       keyframes: {
         pulse: {
@@ -22,15 +22,15 @@ module.exports = {
             color: '#2C0074'
           },
           '50%': {
-            opacity: 0.70,
-            color: '#4503B1'
+            opacity: 0.90,
+            color: '#0F00A5'
           }
         }
       }
     },
     colors: {
       light: {
-        lth: '#F2E8FF',
+        lth: '#F9F4FF',
         bg1: '#EFEBFF',
         bg2: '#D4C9FF',
         nav: '#C7B9FF',
@@ -38,8 +38,8 @@ module.exports = {
         selec: '#2F20D3',
         btn: '#260162',
         rose: '#E10A4B',
-        softgreen: '#D9FFED',
-        green: '#1FBC72'
+        softgreen: '#ECFFF6',
+        green: '#0DA15C'
       }
     }
   },

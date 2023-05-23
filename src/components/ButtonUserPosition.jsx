@@ -22,7 +22,7 @@ export default function ButtonUserPosition ({ setSelectPosition }) {
   return (
     <div>
       <button
-        className='bg-light-btn text-light-bg1 rounded-sm h-8 w-48'
+        className='bg-light-btn text-light-bg1 rounded-sm h-8 w-36'
         onClick={searchMyPositon}
       >
         Go to my Position
