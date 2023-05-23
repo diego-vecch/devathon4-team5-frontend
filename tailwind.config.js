@@ -38,7 +38,8 @@ module.exports = {
         selec: '#2F20D3',
         btn: '#260162',
         rose: '#E10A4B',
-        green: '#1DAD69'
+        softgreen: '#D9FFED',
+        green: '#1FBC72'
       }
     }
   },
