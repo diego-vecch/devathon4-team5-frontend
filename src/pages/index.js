@@ -21,7 +21,7 @@ export default function Home () {
               </div>
               <div className='mt-1'><ButtonUserPosition setSelectPosition={setSelectPosition} /></div>
               <InfoCard selectPosition={selectPosition} />
-              <div>
+              <div className='mt-5'>
                 <Valoration />
               </div>
             </div>

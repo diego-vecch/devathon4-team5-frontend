@@ -1,7 +1,8 @@
-import { ENDPOINT } from './const'
+// import { ENDPOINT } from './const'
+const urlLogin = process.env.NEXT_PUBLIC_URL_LOGIN
+
 export default function fetchLogin (credentials) {
-  console.log(credentials)
-  return fetch(`${ENDPOINT}/login`, {
+  return fetch(urlLogin, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json; charset=utf-8' },
     body: JSON.stringify(credentials)

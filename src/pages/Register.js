@@ -5,7 +5,7 @@ import React from 'react'
 export default function RegisterPage () {
   return (
     <div className='h-screen bg-gradient-to-t to-light-bg1 from-light-bg2'>
-      <div className='flex flex-col items-center mt-10'> 
+      <div className='flex flex-col items-center mt-8'>
         <Icon />
       </div>
       <Register />

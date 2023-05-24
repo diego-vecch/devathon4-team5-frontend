@@ -1,17 +1,23 @@
-import { useState } from 'react'
-import dataAcces from '../../mock/infoAcces.json'
+'use-client'
+import { useState, useContext } from 'react'
+// import dataAcces from '../../mock/infoAcces.json'
+import dataAcces from '@/services/dataAcces'
+import SearchText from '../../context/searchTextContext'
 
 export default function InfoCard ({ selectPosition }) {
-  const [acces, setAcces] = useState(false)
-  const namePosition = selectPosition?.name
-  const hasDataAcces = dataAcces.result.wheelchair_accessible_entrance
+  const [acces/*, setAcces */] = useState(false)
+  const { searchText } = useContext(SearchText)
+  /*  const namePosition = selectPosition?.name */
+  // const hasDataAcces = item.result.wheelchair_accessible_entrance
   const viewAcces = () => {
-    setAcces(hasDataAcces)
+    dataAcces(searchText)
+    // setAcces(hasDataAcces)
   }
 
   return (
     <div className='mt-4'>
-      <p>{namePosition}</p>
+      {/* <p>{namePosition}</p> */}
+      <>{searchText}</>
       <span className='flex mt-4'>
         <button
           className='bg-light-btn text-light-lth h-8 w-24'
