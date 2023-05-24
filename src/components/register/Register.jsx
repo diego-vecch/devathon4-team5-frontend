@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import Link from 'next/link'
 import * as Yup from 'yup'
+import dataRegister from '@/services/dataRegister'
 
 const schema = Yup.object().shape({
   name: Yup.string().required('Name is required'),
@@ -22,7 +23,7 @@ const validate = (values) => {
   return errors
 }
 
-export default function Register() {
+export default function Register () {
   const [datos, setDatos] = useState({
     name: '',
     username: '',
@@ -32,6 +33,7 @@ export default function Register() {
   })
 
   const [errors, setErrors] = useState({})
+  const [succes, setSucces] = useState(false)
 
   const handleChange = (e) => {
     setDatos({
@@ -47,22 +49,14 @@ export default function Register() {
 
     if (Object.keys(errors).length === 0) {
       try {
-        const url = await fetch('http://13.36.85.62/api/v1/users/register', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(datos)
-        })
-
+        const url = await dataRegister(datos)
         if (!url.ok) {
           throw new Error(url.statusText)
         }
 
         const content = await url.json()
         console.log(content)
-        setSuccessMessage('Su cuenta se ha creado correctamente.')
+        setSucces(true)
         setDatos({
           name: '',
           username: '',
@@ -79,16 +73,17 @@ export default function Register() {
   }, [datos])
 
   return (
-    <div className='fixed flex w-full items-center'>
-      <div className='relative mx-6 md:mx-auto w-full bg-light-bg2 rounded-lg md:w-1/2 lg:w-1/3 z-20 m-8'>
-        <div className='shadow-lg bg-white rounded-lg p-8'>
-          <h1 className='text-2xl text-green-400'>Create an account</h1>
-          <form className='pt-6 pb-2 my-2' id='formulario' method='post' onSubmit={enviarDatos}>
-            <div className='mb-6'>
-              <label className='block text-sm font-bold mb-2' htmlFor='name'>
+    <div className='flex w-full items-center'>
+      <div className=' mx-6 md:mx-auto w-full pt-6 bg-light-bg2 rounded-lg md:w-1/2 lg:w-1/3 z-20 m-8'>
+        <div className='shadow-lg bg-white rounded-lg px-8'>
+          <h1 className='text-2xl text-center text-light-btn'>Create an account</h1>
+          <form className='pt-4 pb-1 my-2' id='formulario' method='post' onSubmit={enviarDatos}>
+            <div className='mb-4'>
+              <label className='block text-sm font-bold mb-1' htmlFor='name'>
                 Name
               </label>
-              <input className={`rounded w-full py-2 px-3 text-grey-darker mb-3 ${errors.name ? 'border-red-500' : ''}`} 
+              <input
+                className={`rounded w-full py-2 px-3 text-grey-darker ${errors.name ? 'border-red-500' : ''}`}
                 required
                 onChange={handleChange}
                 id='name'
@@ -97,13 +92,14 @@ export default function Register() {
                 placeholder='Name'
                 value={datos.name}
               />
-              {errors.name && <p className='text-red-500'>{errors.name}</p>}
+              {errors.name && <p className='text-light-rose bg-light-rose bg-opacity-10 border-l-2 border-light-rose pl-2'>{errors.name}</p>}
             </div>
-            <div className='mb-6'>
-              <label className='block text-sm font-bold mb-2' htmlFor='username'>
+            <div className='mb-4'>
+              <label className='block text-sm font-bold mb-1' htmlFor='username'>
                 User Name
               </label>
-              <input className={`rounded w-full py-2 px-3 text-grey-darker mb-3 ${errors.username ? 'border-red-500' : ''}`}
+              <input
+                className={`rounded w-full py-2 px-3 text-grey-darker ${errors.username ? 'border-red-500' : ''}`}
                 required
                 onChange={handleChange}
                 id='username'
@@ -112,13 +108,14 @@ export default function Register() {
                 placeholder='User Name'
                 value={datos.username}
               />
-              {errors.username && <p className='text-red-500'>{errors.username}</p>}
+              {errors.username && <p className='text-light-rose bg-light-rose bg-opacity-10 border-l-2 border-light-rose pl-2'>{errors.username}</p>}
             </div>
-            <div className='mb-6'>
-              <label className='block text-sm font-bold mb-2' htmlFor='email'>
+            <div className='mb-4'>
+              <label className='block text-sm font-bold mb-1' htmlFor='email'>
                 Email
               </label>
-              <input className={`rounded w-full py-2 px-3 text-grey-darker mb-3 ${errors.email ? 'border-red-500' : ''}`}
+              <input
+                className={`rounded w-full py-2 px-3 text-grey-darker ${errors.email ? 'border-red-500' : ''}`}
                 required
                 onChange={handleChange}
                 id='email'
@@ -127,13 +124,14 @@ export default function Register() {
                 placeholder='email@email.com'
                 value={datos.email}
               />
-              {errors.email && <p className='text-red-500'>{errors.email}</p>}
+              {errors.email && <p className='text-light-rose bg-light-rose bg-opacity-10 border-l-2 border-light-rose pl-2'>{errors.email}</p>}
             </div>
-            <div className='mb-6'>
-              <label className='block text-sm font-bold mb-2' htmlFor='password'>
+            <div className='mb-4'>
+              <label className='block text-sm font-bold mb-1' htmlFor='password'>
                 Password
               </label>
-              <input className={`rounded w-full py-2 px-3 text-grey-darker mb-3 ${errors.password ? 'border-red-500' : ''}`}
+              <input
+                className={`rounded w-full py-2 px-3 text-grey-darker ${errors.password ? 'border-red-500' : ''}`}
                 required
                 onChange={handleChange}
                 id='password'
@@ -142,13 +140,17 @@ export default function Register() {
                 placeholder='password'
                 value={datos.password}
               />
-              {errors.password && <p className='text-red-500'>{errors.password}</p>}
+              {errors.password &&
+                <p className='text-light-rose bg-light-rose bg-opacity-10 border-l-2 border-light-rose pl-2'>
+                  {errors.password}
+                </p>}
             </div>
-            <div className='mb-6'>
-              <label className='block text-sm font-bold mb-2' htmlFor='confirm_password'>
+            <div className='mb-4'>
+              <label className='block text-sm font-bold mb-1' htmlFor='confirm_password'>
                 Confirm password
               </label>
-              <input className={`rounded w-full py-2 px-3 text-grey-darker mb-3 ${errors.confirm_password ? 'border-red-500' : ''}`}
+              <input
+                className={`rounded w-full py-2 px-3 text-grey-darker ${errors.confirm_password ? 'border-red-500' : ''}`}
                 required
                 onChange={handleChange}
                 id='confirm_password'
@@ -157,13 +159,34 @@ export default function Register() {
                 placeholder='confirm_password'
                 value={datos.confirm_password}
               />
-              {errors.confirm_password && <p className='text-red-500'>{errors.confirm_password}</p>}
+              {errors.confirm_password &&
+                <p className='text-light-rose bg-light-rose bg-opacity-10 border-l-2 border-light-rose pl-2'>
+                  {errors.confirm_password}
+                </p>}
             </div>
-            <div className='flex flex-col m-6 items-center'>
-              <button type='submit' onClick={enviarDatos} className='bg-light-btn text-light-bg1 rounded-lg m-2 h-7 w-auto content-center'>Create Account</button>
-            </div>
+            {!succes && (
+              <div className='flex flex-col m-6 items-center'>
+                <button
+                  type='submit' onClick={enviarDatos}
+                  className='bg-light-btn text-light-bg1 rounded-lg m-2 h-8 w-32 content-center'
+                >
+                  Create Account
+                </button>
+              </div>)}
+            {succes && (
+              <div className='mb-4 py-2 text-light-green bg-light-softgreen bg-opacity-80 border-l-4 border-light-green pl-3'>Your account has been created successfully!!
+                <br /> Check your email to validate your account
+              </div>)}
             <div className='flex justify-center items-center'>
-              <label className='ml-2 text-sm font-bold dark:text-gray-300'>you have an account? <font color='blue'><Link href='/Login' className='ml-2 gap-4 text-sm font-bold text-light-selec dark:text-gray-300'>Login.</Link></font> </label>
+              <label className='ml-1 mb-3 text-sm font-bold dark:text-gray-300'>you have an account?
+                <font color='blue'>
+                  <Link
+                    href='/login'
+                    className='ml-2 gap-4 text-sm font-bold text-light-selec dark:text-gray-300'
+                  >Login.
+                  </Link>
+                </font>
+              </label>
             </div>
           </form>
         </div>

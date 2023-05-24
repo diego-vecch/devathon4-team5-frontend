@@ -10,11 +10,9 @@ export default function useUser () {
 
   const login = useCallback((credentials) => {
     setState({ loading: true, error: false })
-    console.log('hay un custom hook que está haciendo el fetching...')
     fetchLogin(credentials)
       .then(jwt => {
         typeof window !== 'undefined' && window.sessionStorage.setItem('jwt', jwt)
-        console.log('esto debería ser el token devuelto por el services fetch', jwt)
         setState({ loading: false, error: false })
         setJwt(jwt)
       })

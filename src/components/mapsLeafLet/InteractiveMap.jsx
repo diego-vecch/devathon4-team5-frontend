@@ -4,6 +4,8 @@ import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import PositionContext from '../../context/userPositionContext'
 import { ResetCenterView } from './ResetCenterView'
+import CoordinatePlaces from './CoordinatePlaces'
+import SearchText from '@/context/searchTextContext'
 
 const icon = L.icon({
   iconUrl: './placeholder.png',
@@ -12,6 +14,7 @@ const icon = L.icon({
 
 function InteractiveMap ({ selectPosition }) {
   const { userPosition } = useContext(PositionContext)
+  const { searchText } = useContext(SearchText)
 
   const myLatitude = selectPosition?.lat || userPosition[0]
   const myLongitude = selectPosition?.lon || userPosition[1]
@@ -30,9 +33,7 @@ function InteractiveMap ({ selectPosition }) {
       {locationSelection && (
         <Marker position={locationSelection} icon={icon}>
           <Popup>
-            A pretty CSS3 popup.
-            <br />
-            Easily customizable.
+            {searchText}
           </Popup>
         </Marker>
       )}
@@ -40,6 +41,7 @@ function InteractiveMap ({ selectPosition }) {
         latitudinalPosition={selectPosition?.lat}
         longitudinalPosition={selectPosition?.lon}
       />
+      <CoordinatePlaces />
     </MapContainer>
   )
 }

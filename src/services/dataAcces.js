@@ -1,9 +1,12 @@
-export default function dataAcces () {
-  fetch('../mock/infoAcces', {
+const urlDataAcces = process.env.NEXT_PUBLIC_URL_ACCESIBILITY
+
+export default function dataAcces (searchText) {
+  console.log('esto llega como searchtext al fetch', searchText)
+  fetch(urlDataAcces, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      place: 'teatro lopez de avala'
+      place: searchText
     })
   })
     .then((response) => response.text())

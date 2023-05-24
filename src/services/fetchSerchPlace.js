@@ -24,7 +24,7 @@ export default function fetchSearchPlace ({ queryString, setListPlace }) {
 }
  */
 
-const urlSearch = `${process.env.NEXT_PUBLIC_URL_INFO_MAP}`
+const urlSearch = `${process.env.NEXT_PUBLIC_URL_MAP_AUTOCOMPLETE}`
 
 export default function fetchSearchPlace ({ searchText, setListPlace }) {
   const requestOptions = {
