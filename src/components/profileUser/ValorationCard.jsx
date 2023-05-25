@@ -1,4 +1,3 @@
-import Valoration from "../InfoCard/Valoration"
 
 export const ValorationCard = () => {
   return (
