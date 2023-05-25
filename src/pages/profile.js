@@ -1,4 +1,5 @@
 import Navbar from '@/components/Navbar'
+import { HistoryComents } from '@/components/profileUser/HistoryComents'
 import ProfileIcon from '@/components/profileUser/ProfileIcon'
 import { ProfileUser } from '@/components/profileUser/ProfileUser'
 import { ValorationCard } from '@/components/profileUser/ValorationCard'
@@ -20,8 +21,8 @@ export default function Profile() {
                                 <div>
                                 <section>
                             <ProfileUser/>
-                            <div className='flex flex-col-2 gap-4 mt-4'>
-                            <p>Acá va la otra Card</p>
+                            <div className='flex max-w-3xl flex-col-2 gap-4 mt-4'>
+                            <HistoryComents/>
                             <ValorationCard/>
                             </div>
 
