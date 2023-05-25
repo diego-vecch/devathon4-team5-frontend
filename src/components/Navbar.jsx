@@ -9,7 +9,7 @@ function Navbar ({ direct }) {
   const links = [
     { name: 'Home', link: '/', id: 1 },
     { name: 'About us', link: '/', id: 2 },
-    { name: 'Contact us', link: '/', id: 3 }
+    { name: 'Contact us', link: '/formContact', id: 3 }
   ]
   const { isLogged, logout } = useUser()
 
