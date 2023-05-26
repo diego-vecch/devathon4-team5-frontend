@@ -11,7 +11,5 @@ export function dataCoordinates (coordinates) {
   })).then(res => {
     if (!res.ok) throw new Error(' Response is not ok')
     return res.json()
-  }).then(res => {
-    return res.address
   })
 }

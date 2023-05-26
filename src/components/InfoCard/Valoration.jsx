@@ -1,34 +1,57 @@
 import { useState, useContext } from 'react'
 import Context from '../../context/userContext'
-import dataOpinion from '@/services/dataOpinion'
+import dataOpinion, { updateOpinion, deleteOpinion } from '@/services/dataOpinion'
+import SelectPlaceId from '../../context/placeIdContext'
 
 export default function Valoration () {
   const { jwt } = useContext(Context)
+  const { placeId, setPlaceId } = useContext(SelectPlaceId)
   const [rating, setRating] = useState(0)
   const [comment, setComment] = useState('')
+
+  const [opinionRating, setOpinionRating] = useState('')
+
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formVisible, setFormVisible] = useState(false)
+  const [viewOptions, setViewOptions] = useState(false)
+  const [editOpinion, setEditOpinion] = useState(false)
+  const [noSend, setNoSend] = useState(true)
 
   const handleRatingClick = (value) => {
     setRating(value)
     setFormVisible(true)
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    // Aquí puedes agregar la lógica para enviar los datos del formulario
-    setFormSubmitted(true)
-    // place id de prueba
-    const Id = '2'
-    dataOpinion(jwt, Id, rating, comment)
-      .then(e => {
-        console.log('esto es lo que pasa', e.succes)
-      })
-  }
-
-  const textOppinon = (event) => {
+  const textOpinion = (event) => {
     event.preventDefault()
     setComment(event.target.value)
+  }
+
+  const sendOpinion = (event) => {
+    event.preventDefault()
+    setFormSubmitted(true)
+    dataOpinion(jwt, placeId, comment, rating)
+      .then(e => {
+        const idComment = e
+        setOpinionRating(idComment)
+      })
+    setViewOptions(true)
+  }
+
+  const updateMyOpinion = () => {
+    updateOpinion(jwt, opinionRating, placeId, comment, rating)
+    setFormSubmitted(true)
+    setEditOpinion(false)
+  }
+
+  const deleteMyOpinion = () => {
+    deleteOpinion(jwt, opinionRating, placeId, comment, rating)
+    setRating(0)
+    setFormSubmitted(false)
+    setFormVisible(false)
+    setViewOptions(false)
+    setNoSend(true)
+    setPlaceId('')
   }
 
   return (
@@ -45,44 +68,47 @@ export default function Valoration () {
       )}
 
       {formVisible && !formSubmitted && (
-        <form
-          className='w-64 px-1 py-1 focus:outline-none bg-light-bg2'
-          onSubmit={handleSubmit}
-        >
-          <h3>Value your experience</h3>
-          <div className='rating'>
-            {[1, 2, 3, 4, 5].map((value) => (
-              <label key={value} className='star-label' onClick={() => handleRatingClick(value)}>
-                <input
-                  type='checkbox'
-                  name='rating'
-                  value={value}
-                  checked={rating === value}
-                  className='star-checkbox'
-                  onChange={() => {}}
-                />
-                <span className={value <= rating ? 'star filled' : 'star'}>&#9733;</span>
-              </label>
-            ))}
-          </div>
+        <div>
+          <form
+            className='w-64 px-1 py-1 focus:outline-none bg-light-bg2'
+            onSubmit={sendOpinion}
+          >
+            <h3>Value your experience</h3>
+            <div className='rating'>
+              {[1, 2, 3, 4, 5].map((value) => (
+                <label key={value} className='star-label' onClick={() => handleRatingClick(value)}>
+                  <input
+                    type='checkbox'
+                    name='rating'
+                    value={value}
+                    checked={rating === value}
+                    className='star-checkbox'
+                    onChange={() => {}}
+                  />
+                  <span className={value <= rating ? 'star filled' : 'star'}>&#9733;</span>
+                </label>
+              ))}
+            </div>
 
-          <textarea
-            onChange={textOppinon}
-            className='bg-light-lth w-60 focus:outline-none px-1'
-            name='comments'
-            id='opion'
-            placeholder='Write your comment'
-          />
-          {/* <button type='submit' className='bg-light-btn text-light-lth rounded-sm h-8 w-24 p-1'>send</button> */}
-          <input
-            type='submit'
-            value={formSubmitted ? 'Thank you!' : 'Send'}
-            className={`bg-light-btn text-light-lth rounded-sm h-8 w-24 p-1 ${
+            <textarea
+              value={comment}
+              onChange={textOpinion}
+              className='bg-light-lth w-60 focus:outline-none px-1'
+              name='comments'
+              id='opion'
+              placeholder='Write your comment'
+            />
+            {noSend && (
+              <input
+                type='submit'
+                value={formSubmitted ? 'Thank you!' : 'Send'}
+                className={`bg-light-btn text-light-lth rounded-sm h-8 w-24 p-1 ${
               formSubmitted ? 'text-light-lth cursor-not-allowed' : ''
             }`}
-            disabled={formSubmitted}
-          />
-        </form>
+                disabled={formSubmitted}
+              />)}
+          </form>
+        </div>
       )}
       {formSubmitted && (
         <div>
@@ -90,11 +116,33 @@ export default function Valoration () {
             Thank you for evaluating your experience.
           </p>
           <div className='my-2'>Your value is : {rating}</div>
-          <div className='my-2'>Your oppion is : {comment}</div>
+          <div className='my-2'>Your opinion is : {comment}</div>
+        </div>
+      )}
+      {viewOptions && (
+        <div>
+          {!editOpinion && (
+            <button
+              onClick={() => {
+                setEditOpinion(true)
+                setFormSubmitted(false)
+                setNoSend(false)
+              }}
+              className='bg-light-btn text-light-lth rounded-sm h-8 w-24 p-1'
+            >Edit
+            </button>)}
+          {editOpinion && (
+            <button
+              onClick={updateMyOpinion}
+              className=' bg-light-btn text-light-lth rounded-sm h-8 w-24 p-1'
+            >
+              update
+            </button>)}
           <button
-            onClick={() => setFormSubmitted(false)}
-            className='bg-light-btn text-light-lth rounded-sm h-8 w-24 p-1'
-          >Edit
+            onClick={deleteMyOpinion}
+            className='ml-2 mt-4 bg-light-btn text-light-lth rounded-sm h-8 w-24 p-1'
+          >
+            delete
           </button>
         </div>
       )}
