@@ -3,9 +3,11 @@ import Image from 'next/image'
 import fetchSearchPlace from '@/services/fetchSerchPlace'
 import IconSearch from './componetImage/IconSearch'
 import SearchText from '../context/searchTextContext'
+import SelectPlaceId from '../context/placeIdContext'
 
 export default function SearchBox ({ setSelectPosition }) {
   const { searchText, setSearchText } = useContext(SearchText)
+  const { setPlaceId } = useContext(SelectPlaceId)
   const [listPlace, setListPlace] = useState([])
   const [optionPlace, setOptionPlace] = useState(false)
 
@@ -56,6 +58,7 @@ export default function SearchBox ({ setSelectPosition }) {
                     setSelectPosition({ lat: latitudinalPosition, lon: longitudinalPosition, name: namePosition })
                     setOptionPlace(true)
                     setSearchText(`${namePosition.trim()}`)
+                    setPlaceId(idPosition)
                   }}
                 >
                   <div className='flex py-2'>
