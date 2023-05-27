@@ -1,58 +1,21 @@
-import { useState, useContext } from 'react'
-import Context from '../../context/userContext'
-import dataOpinion, { updateOpinion, deleteOpinion } from '@/services/dataOpinion'
-import SelectPlaceId from '../../context/placeIdContext'
-
+import useValoration from '@/hooks/useValoration'
 export default function Valoration () {
-  const { jwt } = useContext(Context)
-  const { placeId, setPlaceId } = useContext(SelectPlaceId)
-  const [rating, setRating] = useState(0)
-  const [comment, setComment] = useState('')
-
-  const [opinionRating, setOpinionRating] = useState('')
-
-  const [formSubmitted, setFormSubmitted] = useState(false)
-  const [formVisible, setFormVisible] = useState(false)
-  const [viewOptions, setViewOptions] = useState(false)
-  const [editOpinion, setEditOpinion] = useState(false)
-  const [noSend, setNoSend] = useState(true)
-
-  const handleRatingClick = (value) => {
-    setRating(value)
-    setFormVisible(true)
-  }
-
-  const textOpinion = (event) => {
-    event.preventDefault()
-    setComment(event.target.value)
-  }
-
-  const sendOpinion = (event) => {
-    event.preventDefault()
-    setFormSubmitted(true)
-    dataOpinion(jwt, placeId, comment, rating)
-      .then(e => {
-        const idComment = e
-        setOpinionRating(idComment)
-      })
-    setViewOptions(true)
-  }
-
-  const updateMyOpinion = () => {
-    updateOpinion(jwt, opinionRating, placeId, comment, rating)
-    setFormSubmitted(true)
-    setEditOpinion(false)
-  }
-
-  const deleteMyOpinion = () => {
-    deleteOpinion(jwt, opinionRating, placeId, comment, rating)
-    setRating(0)
-    setFormSubmitted(false)
-    setFormVisible(false)
-    setViewOptions(false)
-    setNoSend(true)
-    setPlaceId('')
-  }
+  const {
+    viewFormValoration,
+    handleRatingClick,
+    textOpinion,
+    sendOpinion,
+    editValoration,
+    updateMyOpinion,
+    deleteMyOpinion,
+    formSubmitted,
+    formVisible,
+    viewOptions,
+    editOpinion,
+    noSend,
+    rating,
+    comment
+  } = useValoration()
 
   return (
     <div className='pt-4'>
@@ -60,7 +23,7 @@ export default function Valoration () {
         <div className='text-center bg-light-btn w-36 text-light-lth'>
           <button
             className='bg-blue-500 text-white rounded-sm h-8 px-4'
-            onClick={() => setFormVisible(!formVisible)}
+            onClick={viewFormValoration}
           >
             Start Rating
           </button>
@@ -123,11 +86,7 @@ export default function Valoration () {
         <div>
           {!editOpinion && (
             <button
-              onClick={() => {
-                setEditOpinion(true)
-                setFormSubmitted(false)
-                setNoSend(false)
-              }}
+              onClick={editValoration}
               className='bg-light-btn text-light-lth rounded-sm h-8 w-24 p-1'
             >Edit
             </button>)}
