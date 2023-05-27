@@ -5,8 +5,8 @@ function ProfileIcon () {
         <Image
         src='/profileUser.png'
         alt='ProfileUser'
-        width={190}
-        height={190}
+        width={100}
+        height={50}
         />
     )
 }

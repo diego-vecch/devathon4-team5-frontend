@@ -18,21 +18,21 @@ export default function Profile() {
                     
                         <section className='grid grid-cols-3'>
                             <div className='p-4 w-full'>
-                                <div>
-                                <section>
+                                <div className='flex w-screen flex-col gap-4 mt-4'>
+                                
                             <ProfileUser/>
-                            <div className='flex max-w-3xl flex-col-2 gap-4 mt-4'>
+                            <div className='flex w-screen flex-col gap-4 mt-4'>
                             <HistoryComents/>
-                            <ValorationCard/>
+                            {/* <ValorationCard/> */}
                             </div>
 
                             
                             
-                        </section>
+                        
                                 </div>
 
                             </div>
-                            <div className=' flex col-span-2 p-20 py-6 justify-end'>
+                            <div className=' flex w-64 h-64 ml-36 col-span-2 p-20 py-6 justify-center md:60'>
                                 <ProfileIcon />
                             </div>
                         </section>
