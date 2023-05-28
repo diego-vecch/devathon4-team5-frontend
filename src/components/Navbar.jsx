@@ -4,9 +4,11 @@ import Icon from './Icon'
 import Link from 'next/link'
 import useUser from '@/hooks/useUser'
 import dynamic from 'next/dynamic'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import InfoUser from '@/context/infoUserContext'
 
 function Navbar ({ direct }) {
+  const { infoUser } = useContext(InfoUser)
   const links = [
     { name: 'Home', link: '/', id: 1 },
     { name: 'About us', link: '/', id: 2 },
@@ -19,9 +21,12 @@ function Navbar ({ direct }) {
     e.preventDefault()
     logout()
   }
+  const toggleOptionProfile = (e) => {
+    setOptionProfile(!optionProfile)
+  }
 
   return (
-    <nav className='bg-light-lth bg-opacity-75 h-12 grid grid-cols-3 px-16 pt-4'>
+    <nav className=' bg-opacity-75 w-full h-12 grid grid-cols-3 pt-4'>
       <div className='pb-4'><Icon /> </div>
       <ul className='grid grid-cols-3 gap-4 pr-2 py-1 '>
         {links.map((link) => (
@@ -35,20 +40,20 @@ function Navbar ({ direct }) {
           {isLogged &&
           (
             <div className='z-10'>
-              <button className='hover:text-light-selec px-2' onClick={() => { setOptionProfile(!optionProfile) }}>
-                name user ▾
+              <button className='flex hover:text-light-selec px-2 ml-3' onClick={toggleOptionProfile}>
+                {infoUser} <div className='ml-2'>{optionProfile ? '▴' : '▾'}</div>
               </button>
               {optionProfile &&
                 (
-                  <div className='bg-light-lth grid grid-cols-1 z-20 rounded'>
-                    <Link className='hover:text-light-selec px-2 pt-2' href='/profile'>My profile</Link>
-                    <Link className='hover:text-light-selec z-20 bg-light-lth px-2 py-1' href='#' onClick={handleClick}>Logout</Link>
+                  <div className='bg-light-bg1 grid grid-cols-1 z-20 rounded ml-3'>
+                    <Link className='z-20  hover:text-light-selec pl-1 pt-2' href='/profile'>My profile</Link>
+                    <Link className='hover:text-light-selec z-20 pl-1 py-1' href='#' onClick={handleClick}>Logout</Link>
                   </div>
                 )}
             </div>
           )}
           {!isLogged &&
-          (<Link className='hover:text-light-selec' href='/login'>Login</Link>
+          (<Link className='hover:text-light-selec px-2 ml-3' href='/login'>Login</Link>
           )}</ul>
         </li>
       </ul>
