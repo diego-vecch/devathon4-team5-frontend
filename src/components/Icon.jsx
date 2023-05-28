@@ -2,12 +2,12 @@ import Image from 'next/image'
 
 function Icon () {
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
+    <div className='flex justify-center'>
       <div>
         <Image
-          src='/logo.jpeg'
+          src='/accesLogo.svg'
           alt='Access map'
-          width={37}
+          width={35}
           height={10}
           priority
         />

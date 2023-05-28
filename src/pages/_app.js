@@ -5,6 +5,7 @@ import { Lexend_Deca } from 'next/font/google'
 import { UserPositionProvider } from '@/context/userPositionContext'
 import { SearchPlaceProvider } from '../context/searchTextContext'
 import { PlaceIdProvider } from '@/context/placeIdContext'
+import { InfoUserProvider } from '@/context/infoUserContext'
 
 const inter = Lexend_Deca(
   {
@@ -16,17 +17,19 @@ const inter = Lexend_Deca(
 export default function App ({ Component, pageProps }) {
   return (
     <UserContextProvider>
-      <UserPositionProvider>
-        <SearchPlaceProvider>
-          <PlaceIdProvider>
-            <main
-              className={inter.className}
-            >
-              <Component {...pageProps} />
-            </main>
-          </PlaceIdProvider>
-        </SearchPlaceProvider>
-      </UserPositionProvider>
+      <InfoUserProvider>
+        <UserPositionProvider>
+          <SearchPlaceProvider>
+            <PlaceIdProvider>
+              <main
+                className={inter.className}
+              >
+                <Component {...pageProps} />
+              </main>
+            </PlaceIdProvider>
+          </SearchPlaceProvider>
+        </UserPositionProvider>
+      </InfoUserProvider>
     </UserContextProvider>
   )
 }

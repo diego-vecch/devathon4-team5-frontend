@@ -1,4 +1,3 @@
-// import { ENDPOINT } from './const'
 const urlLogin = process.env.NEXT_PUBLIC_URL_LOGIN
 
 export default function fetchLogin (credentials) {
@@ -10,6 +9,6 @@ export default function fetchLogin (credentials) {
     if (!res.ok) throw new Error(' Response is not ok')
     return res.json()
   }).then(res => {
-    return res.data.token
+    return res.data
   })
 }
