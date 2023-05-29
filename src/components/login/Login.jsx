@@ -52,7 +52,7 @@ export default function Login () {
                 <label className='ml-40 text-sm font-bold text-light-selec dark:text-gray-300'>Forgot Password?</label>
               </div>
               <div className='flex flex-col m-6 items-center'>
-                <button type='submit' className='bg-light-btn  text-light-bg1 rounded-lg m-2 h-7 w-36 content-center'>Sign In</button>
+                <button type='submit' className='bg-light-btn  text-light-bg1 rounded-lg m-2 h-7 w-36 content-center'>Log in</button>
               </div>
               <label className='ml-2 text-sm font-bold text-gray-900 dark:text-gray-300'>Not registered?</label>
               <Link href='/register' className='ml-1 gap-4 text-sm font-bold text-light-selec dark:text-gray-300'>Create an account.</Link>

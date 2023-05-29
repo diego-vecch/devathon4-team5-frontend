@@ -1,6 +1,6 @@
 import { useMapEvent } from 'react-leaflet'
 import { useContext } from 'react'
-import { dataCoordinates } from '../../services/dataCoordinates'
+import { dataCoordinates, visibilityInfoNearby } from '../../services/dataCoordinates'
 import SearchText from '../../context/searchTextContext'
 import SelectPlaceId from '../../context/placeIdContext'
 
@@ -15,6 +15,13 @@ export default function CoordinatePlaces () {
           setSearchText(res.address)
           setPlaceId(res.placeId)
         })
+      const radio = '10000'
+      visibilityInfoNearby(coordinates, radio)
+        .then(
+          res => {
+            console.log(res)
+          }
+        )
     })
   })
   return (
