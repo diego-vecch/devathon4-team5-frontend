@@ -8,7 +8,7 @@ import { useContext, useState } from 'react'
 import InfoUser from '@/context/infoUserContext'
 import IconMenu from './componetImage/IconMenu'
 
-function Navbar ({ direct }) {
+function Navbar({ direct }) {
   const { infoUser } = useContext(InfoUser)
   const links = [
     { name: 'Home', link: '/', id: 1 },
@@ -17,7 +17,12 @@ function Navbar ({ direct }) {
   ]
   const { isLogged, logout } = useUser()
   const [optionProfile, setOptionProfile] = useState(null)
+  const [navClass, setnavClass] = useState(false)
 
+  const handleMenu = () => {
+    setnavClass(!navClass)
+
+  }
   const handleClick = e => {
     e.preventDefault()
     logout()
@@ -27,10 +32,10 @@ function Navbar ({ direct }) {
   }
 
   return (
-    <nav className=' bg-opacity-75 w-full h-12 grid grid-cols-2 md:grid-cols-5 gap-1 lg:grid-cols-3 pt-4'>
+    <nav className='  fixed bg-opacity-75 w-full h-12 grid grid-cols-2 md:grid-cols-6 gap-1 lg:grid-cols-3 pt-4'>
       <div className=' pb-4'><Icon /> </div>
       <div className='md:hidden flex w-full justify-center'>
-        <button className='flex hover:text-light-selec'>
+        <button className='flex hover:text-light-selec' onClick={handleMenu}>
           <div className='flex'>Menu
           </div>
           <div className='pl-2 pt-1'><IconMenu /></div>
@@ -46,25 +51,42 @@ function Navbar ({ direct }) {
       <ul className='hidden md:grid md:visible pt-1 pr:2 lg:pr-16 justify-end lg:justify-center'>
         <li><ul>
           {isLogged &&
-          (
-            <div className='z-10'>
-              <button className='flex hover:text-light-selec px-2 ml-3' onClick={toggleOptionProfile}>
-                {infoUser} <div className='ml-2'>{optionProfile ? '▴' : '▾'}</div>
-              </button>
-              {optionProfile &&
-                (
-                  <div className='bg-light-bg1 grid grid-cols-1 z-20 rounded ml-3'>
-                    <Link className='z-20  hover:text-light-selec pl-1 pt-2' href='/profile'>My profile</Link>
-                    <Link className='hover:text-light-selec z-20 pl-1 py-1' href='#' onClick={handleClick}>Logout</Link>
-                  </div>
-                )}
-            </div>
-          )}
+            (
+              <div className='z-10'>
+                <button className='flex hover:text-light-selec px-2 ml-3' onClick={toggleOptionProfile}>
+                  {infoUser} <div className='ml-2'>{optionProfile ? '▴' : '▾'}</div>
+                </button>
+                {optionProfile &&
+                  (
+                    <div className='bg-light-bg1 grid grid-cols-1 z-20 rounded ml-3'>
+                      <Link className='z-20  hover:text-light-selec pl-1 pt-2' href='/profile'>My profile</Link>
+                      <Link className='hover:text-light-selec z-20 pl-1 py-1' href='#' onClick={handleClick}>Logout</Link>
+                    </div>
+                  )}
+              </div>
+            )}
           {!isLogged &&
-          (<Link className='hover:text-light-selec px-2 ml-3' href='/login'>Login</Link>
-          )}</ul>
+            (<Link className='hover:text-light-selec px-2 ml-3' href='/login'>Login</Link>
+            )}</ul>
         </li>
       </ul>
+      {
+        !navClass &&
+        (
+        <div class="flex h-32 w-32 ">
+        <div class="absolute top-16 left-[550px] right-0 h-16 w-16 ...">
+          <ul>
+            {links.map((link) => (
+              <li className='hover:text-light-selec text-center bg-light-nav' key={link.id}>
+                <a href={link.link}>{link.name}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      )
+      }
+      
     </nav>
   )
 }
