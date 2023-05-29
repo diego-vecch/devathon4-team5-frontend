@@ -6,6 +6,7 @@ import useUser from '@/hooks/useUser'
 import dynamic from 'next/dynamic'
 import { useContext, useState } from 'react'
 import InfoUser from '@/context/infoUserContext'
+import IconMenu from './componetImage/IconMenu'
 
 function Navbar ({ direct }) {
   const { infoUser } = useContext(InfoUser)
@@ -26,16 +27,23 @@ function Navbar ({ direct }) {
   }
 
   return (
-    <nav className=' bg-opacity-75 w-full h-12 grid grid-cols-3 pt-4'>
-      <div className='pb-4'><Icon /> </div>
-      <ul className='grid grid-cols-3 gap-4 pr-2 py-1 '>
+    <nav className=' bg-opacity-75 w-full h-12 grid grid-cols-2 md:grid-cols-5 gap-1 lg:grid-cols-3 pt-4'>
+      <div className=' pb-4'><Icon /> </div>
+      <div className='md:hidden flex w-full justify-center'>
+        <button className='flex hover:text-light-selec'>
+          <div className='flex'>Menu
+          </div>
+          <div className='pl-2 pt-1'><IconMenu /></div>
+        </button>
+      </div>
+      <ul className='hidden md:grid md:visible col-span-3 lg:col-span-1 grid-cols-3 gap-4 pr-2 py-1 '>
         {links.map((link) => (
           <li className='hover:text-light-selec text-center' key={link.id}>
             <a href={link.link}>{link.name}</a>
           </li>
         ))}
       </ul>
-      <ul className='grid pt-1 pr-16 justify-end'>
+      <ul className='hidden md:grid md:visible pt-1 pr:2 lg:pr-16 justify-end lg:justify-center'>
         <li><ul>
           {isLogged &&
           (
