@@ -12,7 +12,7 @@ function Navbar ({ direct }) {
   const { infoUser } = useContext(InfoUser)
   const links = [
     { name: 'Home', link: '/', id: 1 },
-    { name: 'About us', link: '/', id: 2 },
+    { name: 'About us', link: '/about', id: 2 },
     { name: 'Contact us', link: '/formContact', id: 3 }
   ]
   const { isLogged, logout } = useUser()
