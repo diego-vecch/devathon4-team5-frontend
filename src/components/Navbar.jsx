@@ -32,7 +32,7 @@ function Navbar({ direct }) {
   }
 
   return (
-    <nav className='  fixed bg-opacity-75 w-full h-12 grid grid-cols-2 md:grid-cols-6 gap-1 lg:grid-cols-3 pt-4'>
+    <nav className='bg-opacity-75 w-full h-12 grid grid-cols-2 md:grid-cols-6 gap-1 lg:grid-cols-3 pt-4'>
       <div className=' pb-4'><Icon /> </div>
       <div className='md:hidden flex w-full justify-center'>
         <button className='flex hover:text-light-selec' onClick={handleMenu}>
@@ -70,14 +70,15 @@ function Navbar({ direct }) {
             )}</ul>
         </li>
       </ul>
+      <div className='container flex mx-auto my-aut mr-24'>
       {
-        !navClass &&
+        navClass &&
         (
-        <div class="flex h-32 w-32 ">
-        <div class="absolute top-16 left-[550px] right-0 h-16 w-16 ...">
+        <div class="flex w-full justify-center md:hidden ">
+        <div class=" absolute top-auto mx-auto  mt-auto left-[500px] h-16 w-32 justify-center items-center md:hidden md:visible md:left-auto sm:mt-auto sm:min-w-full">
           <ul>
             {links.map((link) => (
-              <li className='hover:text-light-selec text-center bg-light-nav' key={link.id}>
+              <li className=' flex hover:text-light-selec items-center bg-light-nav' key={link.id}>
                 <a href={link.link}>{link.name}</a>
               </li>
             ))}
@@ -86,8 +87,12 @@ function Navbar({ direct }) {
       </div>
       )
       }
+      </div>
       
     </nav>
+    
+    
+    
   )
 }
 
