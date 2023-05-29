@@ -14,7 +14,7 @@ export default function InfoCard ({ selectPosition }) {
   const { isSelectPlace } = useValoration()
   const [valoration, setValoration] = useState(null)
   useEffect(() => setValoration(<div className='mt-5'><Valoration /></div>), [])
-  /*  const namePosition = selectPosition?.name */
+  const namePosition = selectPosition?.name
   // const hasDataAcces = item.result.wheelchair_accessible_entrance
   const viewAcces = () => {
     dataAcces(searchText)
@@ -24,8 +24,7 @@ export default function InfoCard ({ selectPosition }) {
   return (
     <div>
       <div className='mt-4'>
-        {/* <p>{namePosition}</p> */}
-        <>{searchText}</>
+        <p>{namePosition}</p>
         <span className='flex mt-4'>
           <button
             className='bg-light-btn text-light-lth h-8 w-24'

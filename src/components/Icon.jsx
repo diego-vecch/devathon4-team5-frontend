@@ -12,7 +12,7 @@ function Icon () {
           priority
         />
       </div>
-      <h2 style={{ textAlign: 'center', marginLeft: '10px' }} className='pb-1 pl-1 text-lg text-center animate-pulse-text'>
+      <h2 style={{ textAlign: 'center', marginLeft: '10px' }} className='pb-1 lg:pl-1 text-lg text-center animate-pulse-text'>
         Access Map
       </h2>
     </div>
