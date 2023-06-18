@@ -4,57 +4,63 @@
 
 /* responsive, primer parametro */
 html {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 
 /* fondo agregado al body */
 body {
-    background-color: #EFEBFF;
-    margin: 0;
-    height: 100vh;
+  background-color: #EFEBFF;
+  margin: 0;
+  height: 100vh;
 }
-.star-label {
-    cursor: pointer;
-  }
-  
-  .star-checkbox {
-    appearance: none;
-    position: absolute;
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .star {
-    color: #ddd;
-    transition: color 0.2s;
-  }
-  
-  .star.filled {
-    color: rgb(255, 235, 103);
-  }
 
-  .cursor-not-allowed {
-    cursor: not-allowed;
-  }
-  
+.star-label {
+  cursor: pointer;
+}
+
+.star-checkbox {
+  appearance: none;
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.star {
+  color: #ddd;
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: rgb(255, 235, 103);
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
 #formulario {
-    width: 80%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 
 /* responsive, reglas */
 
 @media (min-width: 2500px) {
-    html {
-        font-size: 25px;
-    }
+  html {
+    font-size: 25px;
+  }
 }
 
 @media (min-width: 3500px) {
-    html {
-        font-size: 32px;
-    }
+  html {
+    font-size: 32px;
+  }
+}
+
+#hover-container:hover {
+  filter: invert(65%) sepia(4%) saturate(1400%) hue-rotate(149deg) brightness(85%) drop-shadow(0px 0px 1px #C7B9FF);
+
 }

@@ -1,14 +1,13 @@
 import Image from 'next/image'
-
 function IconMenu () {
   return (
     <Image
-      src='/menu.svg'
+      id='hover-container'
+      src='/LogoMenu.svg'
       alt='Accessibility mApp Logo'
-      width={18}
-      height={25}
+      width={20}
+      height={20}
       priority
-      className='hover:stroke-light-selec'
     />
   )
 }
