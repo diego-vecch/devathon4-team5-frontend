@@ -13,7 +13,7 @@ export default function Home () {
         <Navbar />
       </div>
       <div className='grid place-items-center h-full'>
-        <section className=' h-[92%] w-[100%] md:max-h-screen mt-9'>
+        <section className=' h-[92%] w-[100%] md:max-h-screen mt-8'>
           <section className='grid grid-cols-3 h-full w-full'>
             <div className='px-4 w-ful h-full'>
               <h2 className='pb-3 pl-2 text-lg text-center animate-pulse-text'>Check the accessibility of places of interest</h2>
