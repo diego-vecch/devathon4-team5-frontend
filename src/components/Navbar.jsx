@@ -32,7 +32,7 @@ function Navbar ({ direct }) {
   }
 
   return (
-    <nav className='relative bg-opacity-75 w-full h-12 grid grid-cols-2 md:px-4 md:grid-cols-5 gap-1 lg:grid-cols-3 pt-4'>
+    <nav className='relative bg-opacity-75 w-full h-12 grid grid-cols-2 md:px-4 md:grid-cols-5 gap-1 lg:grid-cols-3 pt-2'>
       <div className=' pb-2'><Icon /> </div>
       <div className='md:hidden flex w-full justify-center'>
         <button className='flex hover:text-light-selec z-30' onClick={handleMenu}>
