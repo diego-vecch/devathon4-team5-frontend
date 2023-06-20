@@ -9,9 +9,11 @@ export default function Home () {
   const [selectPosition, setSelectPosition] = useState(null)
   return (
     <main className=' h-screen bg-gradient-to-t to-light-bg1 from-light-bg2 '>
-      <div className='z-20 absolute w-full'> <Navbar /></div>
+      <div className='z-20 absolute w-full'>
+        <Navbar />
+      </div>
       <div className='grid place-items-center h-full'>
-        <section className=' h-[92%] w-[100%] md:max-h-screen mt-16'>
+        <section className=' h-[92%] w-[100%] md:max-h-screen mt-8'>
           <section className='grid grid-cols-3 h-full w-full'>
             <div className='px-4 w-ful h-full'>
               <h2 className='pb-3 pl-2 text-lg text-center animate-pulse-text'>Check the accessibility of places of interest</h2>
