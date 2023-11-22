@@ -32,6 +32,7 @@ function Navbar ({ direct }) {
   }
 
   return (
+
     <nav className='absolute top-2 left-0 right-0 z-50 bg-opacity-75 w-full h-16 grid grid-cols-2 lg:px-4 gap-1 lg:grid-cols-3 xl:gap-14 pt-2'>
       <div className=' pb-2' />
       <div className='lg:hidden flex w-full justify-end pr-3  '>
@@ -41,6 +42,7 @@ function Navbar ({ direct }) {
               <IconMenu />
             </div>
           </button>)}
+
       </div>
       <ul className='hidden lg:grid lg:visible col-span-3 lg:col-span-1 grid-cols-3 gap-1 px-14 lg:px-2 lg:gap-2 py-1 '>
         {links.map((link) => (
