@@ -19,10 +19,10 @@ function InteractiveMap ({ selectPosition }) {
   const myLatitude = selectPosition?.lat || userPosition[0]
   const myLongitude = selectPosition?.lon || userPosition[1]
   const locationSelection = [myLatitude, myLongitude]
-
+  /* w-[98] */
   return (
     <MapContainer
-      className='h-full w-[98]'
+      className='h-full w-full'
       center={locationSelection} zoom={13}
       scrollWheelZoom
     >

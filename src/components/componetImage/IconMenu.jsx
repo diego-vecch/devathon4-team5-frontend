@@ -1,15 +1,26 @@
 import Image from 'next/image'
-function IconMenu () {
+export function IconMenu () {
   return (
     <Image
       id='hover-container'
       src='/LogoMenu.svg'
       alt='Accessibility mApp Logo'
-      width={20}
+      width={26}
       height={20}
       priority
     />
   )
 }
 
-export default IconMenu
+export function IconMenuClose () {
+  return (
+    <Image
+      id='hover-container'
+      src='/LogoMenuClose.svg'
+      alt='Accessibility mApp Logo'
+      width={26}
+      height={20}
+      priority
+    />
+  )
+}

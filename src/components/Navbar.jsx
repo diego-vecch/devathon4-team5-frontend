@@ -1,13 +1,13 @@
 'use-client'
 
-import Icon from './componetImage/Icon'
 import Link from 'next/link'
 import useUser from '@/hooks/useUser'
 import dynamic from 'next/dynamic'
 import { useContext, useState } from 'react'
 import InfoUser from '@/context/infoUserContext'
-import IconMenu from './componetImage/IconMenu'
+import { IconMenu, IconMenuClose } from './componetImage/IconMenu'
 import IconUser from './componetImage/IconUser'
+import { ButtonLink } from '../components/ButtonLink'
 
 function Navbar ({ direct }) {
   const { infoUser } = useContext(InfoUser)
@@ -32,23 +32,27 @@ function Navbar ({ direct }) {
   }
 
   return (
-    <nav className='relative bg-opacity-75 w-full h-12 grid grid-cols-2 md:px-4 md:grid-cols-5 gap-1 lg:grid-cols-3 pt-4'>
-      <div className=' pb-2'><Icon /> </div>
-      <div className='md:hidden flex w-full justify-center'>
-        <button className='flex hover:text-light-selec z-30' onClick={handleMenu}>
-          <div className='pl-2 pt-2'>
-            <IconMenu />
-          </div>
-        </button>
+    <nav className='absolute top-2 left-0 right-0 z-50 bg-opacity-75 w-full h-16 grid grid-cols-2 lg:px-4 gap-1 lg:grid-cols-3 xl:gap-14 pt-2'>
+      <div className=' pb-2' />
+      <div className='lg:hidden flex w-full justify-end pr-3  '>
+        {!navClass && (
+          <button className='flex hover:text-light-selec absolute z-50 bg-light-bg1 rounded-lg border-[1.3px] border-light-selec border-opacity-20' onClick={handleMenu}>
+            <div className='p-3 '>
+              <IconMenu />
+            </div>
+          </button>)}
       </div>
-      <ul className='hidden md:grid md:visible col-span-3 lg:col-span-1 grid-cols-3 gap-4 pr-2 py-1 '>
+      <ul className='hidden lg:grid lg:visible col-span-3 lg:col-span-1 grid-cols-3 gap-1 px-14 lg:px-2 lg:gap-2 py-1 '>
         {links.map((link) => (
-          <li className='hover:text-light-selec text-center' key={link.id}>
-            <a href={link.link}>{link.name}</a>
-          </li>
+          <ButtonLink
+            name={link.name} key={link.id}
+            url={link.link}
+          >
+            {link.name}
+          </ButtonLink>
         ))}
       </ul>
-      <ul className='hidden md:grid md:visible pt-1 pr:2 lg:pr-16 justify-end lg:justify-center'>
+      <ul className='hidden lg:grid lg:visible pt-1 pr:2 lg:pr-16 justify-end 2xl:justify-center'>
         <li>
           {isLogged &&
             (
@@ -66,24 +70,62 @@ function Navbar ({ direct }) {
               </div>
             )}
           {!isLogged &&
-            (<Link className='hover:text-light-selec px-2 ml-3' href='/login'>Login</Link>
+            (
+              <div className='flex gap-2'>
+                <ButtonLink
+                  name='Login'
+                  url='/login'
+                  padding='px-4'
+                />
+                <ButtonLink
+                  name='Register'
+                  url='/register'
+                  padding='px-4'
+                />
+              </div>
             )}
         </li>
       </ul>
-      <div className='container flex right-0 top-0'>
+      <div className=' flex right-0 top-2'>
         {
         navClass &&
         (
-          <div className='bg-light-bg1 rounded-lg right-0 w-1/4 h-18 absolute top-0  md:hidden'>
-            <div className='mt-11 lg:hidden md:mt-auto md:min-w-full text-center'>
+          <div className='flex gap-8 right-0  h-18 absolute top-2 pt-0 px-10  lg:hidden'>
+            <div className='lg:hidden flex w-full justify-start pr-4  '>
+              <button className='flex hover:text-light-selec absolute z-50 bg-light-bg2 rounded-lg' onClick={handleMenu}>
+                <div className='p-3 '>
+                  <IconMenuClose />
+                </div>
+              </button>
+            </div>
+            <div className='lg:hidden min-w-full text-center from-light-bg2 to-light-nav  bg-gradient-to-br px-4 py-2 rounded-md'>
               <ul>
                 {links.map((link) => (
-                  <li className='rounded-lg hover:text-light-selec items-center bg-light-bg1 pb-2 px-1' key={link.id}>
-                    <a href={link.link}>{link.name}</a>
+                  <li
+                    className='my-2'
+                    key={link.id}
+                  >
+                    <ButtonLink
+                      name={link.name}
+                      url={link.link}
+                    >
+                      {link.name}
+                    </ButtonLink>
                   </li>
                 ))}
-                <li className='rounded-lg hover:text-light-selec items-center bg-light-bg1 pb-2 px-1'>
-                  {!isLogged && (<Link href='/login'>Login</Link>)}
+                <li className='rounded-lg  items-center pt-4 pb-2 px-1'>
+                  {!isLogged && (
+                    <div className='flex flex-col gap-2'>
+                      <ButtonLink
+                        name='Login'
+                        url='/login'
+                      />
+                      <ButtonLink
+                        name='Register'
+                        url='/register'
+                      />
+                    </div>
+                  )}
                 </li>
                 <li />
               </ul>
