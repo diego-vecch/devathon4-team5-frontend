@@ -16,7 +16,7 @@ export default function SearchBox ({ setSelectPosition }) {
   }
 
   return (
-    <>
+    <div className=' w-full'>
       <div className='flex'>
         <div>
           <button
@@ -38,14 +38,14 @@ export default function SearchBox ({ setSelectPosition }) {
                 setOptionPlace(true)
               }
             }}
-            className='w-96 px-1 py-1 focus:outline-none bg-light-lth'
+            className='w-full px-1 py-1 focus:outline-none bg-light-lth'
             placeholder='Buenos Aires...'
           />
         </div>
       </div>
 
       <div>
-        <div className='pt-1 w-96' component='nav' aria-label='main mailbox folders'>
+        <div className='pt-1 w-full' component='nav' aria-label='main mailbox folders'>
           {!optionPlace && listPlace.map((item) => {
             const namePosition = item?.locality
             const latitudinalPosition = item?.location.lat
@@ -85,6 +85,6 @@ export default function SearchBox ({ setSelectPosition }) {
         </div>
       </div>
 
-    </>
+    </div>
   )
 }
